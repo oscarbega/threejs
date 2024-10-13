@@ -242,11 +242,11 @@ function createWall() {
 function bowlingAlley(){
     //Crea la pista de bolos
     const mtlLoader = new MTLLoader()
-    mtlLoader.load('assets/ammo/bowling.mtl', (materials) =>{
+    mtlLoader.load('/ammo/bowling.mtl', (materials) =>{
         const objLoader = new OBJLoader()
         materials.materials.receiveShadow=true
         objLoader.setMaterials(materials)
-        objLoader.load('assets/ammo/bowling.obj',(obj)=>{
+        objLoader.load('/ammo/bowling.obj',(obj)=>{
             obj.castShadow=true
             obj.children[0].receiveShadow=true
             scene.add(obj)
@@ -265,13 +265,13 @@ function bowlingAlley(){
 function bowlingPins(px,py){
     const mtlLoader = new MTLLoader();
     const objLoader = new OBJLoader();
-    mtlLoader.load('assets/ammo/bolo.mtl', (materials) =>{
+    mtlLoader.load('/ammo/bolo.mtl', (materials) =>{
         materials.materials.receiveShadow=true
         materials.materials.castShadow=true
         console.log(materials)
         objLoader.setMaterials(materials)
         
-        objLoader.load('assets/ammo/bolo.obj',(obj)=>{
+        objLoader.load('/ammo/bolo.obj',(obj)=>{
             obj.rotateX(Math.PI/-2)
             obj.position.set(px,0.1,py)
             obj.scale.set(0.02,0.02,0.02)

@@ -33,7 +33,7 @@ function init() {
 
   //Lectura datos xml
   var loader = new THREE.FileLoader();
-  loader.load("assets/terrains/map2.osm", function (text) {   
+  loader.load("/terrains/map2.osm", function (text) {   
     //Fuente https://www.w3schools.com/xml/xml_parser.asp
     var text, parser, xmlDoc;
     parser = new DOMParser();
@@ -192,10 +192,10 @@ function Esfera(px, py, pz, radio, nx, ny, col) {
 const matloader = new MTLLoader();
 const loader = new OBJLoader();
 function tree(px,py){
-  matloader.load("assets/terrains/low_poly_tree/Lowpoly_tree_sample.mtl",(mat)=>{
+  matloader.load("/terrains/low_poly_tree/Lowpoly_tree_sample.mtl",(mat)=>{
     mat.preload();
     loader.setMaterials(mat)
-    loader.load("assets/terrains/low_poly_tree/Lowpoly_tree_sample.obj",((obj)=>{
+    loader.load("/terrains/low_poly_tree/Lowpoly_tree_sample.obj",((obj)=>{
         obj.rotateX(Math.PI/180 *90)
         obj.rotateY(Math.PI/180 *Math.random()*180)
         obj.scale.set(0.005,0.005,0.005);

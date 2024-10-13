@@ -26,11 +26,11 @@ function init(){
   scene.add(light)
 
   //Textura mundo
-  const tx1 = new THREE.TextureLoader().load("../assets/terrains/earthmap1k.jpg");
+  const tx1 = new THREE.TextureLoader().load("..//terrains/earthmap1k.jpg");
   //Mapa de elevación 1 fuente https://visibleearth.nasa.gov/images/73934/topography
-  const dm1 = new THREE.TextureLoader().load("assets/terrains/assets/gebco_08_rev_elev_5400x2700.png");
+  const dm1 = new THREE.TextureLoader().load("/terrains//gebco_08_rev_elev_5400x2700.png");
   //Mapa de elevación 2 Fuente https://sbcode.net/threejs/displacmentmap/
-  const dm2 = new THREE.TextureLoader().load("assets/terrains/gebco_bathy.5400x2700_8bit.jpg");
+  const dm2 = new THREE.TextureLoader().load("/terrains/gebco_bathy.5400x2700_8bit.jpg");
 
   //Objeto
   mapsx=21.6/2.5;

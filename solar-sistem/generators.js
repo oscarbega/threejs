@@ -25,9 +25,9 @@ export function Planet(parent,px,py,pz,radio,nx,ny,col,Objects,scene){
     Objects.push(mesh)
 }
 function MarsMaterial(color){
-    const txColor = new THREE.TextureLoader().load('../assets/galaxy/mars/mars_1k_color.jpg')
-    const txnormal = new THREE.TextureLoader().load('../assets/galaxy/mars/mars_1k_normal.jpg')
-    const txBump = new THREE.TextureLoader().load('../assets/galaxy/mars/marsbump1k.jpg')
+    const txColor = new THREE.TextureLoader().load('..//galaxy/mars/mars_1k_color.jpg')
+    const txnormal = new THREE.TextureLoader().load('..//galaxy/mars/mars_1k_normal.jpg')
+    const txBump = new THREE.TextureLoader().load('..//galaxy/mars/marsbump1k.jpg')
     
     const material = new THREE.MeshStandardMaterial({
         color:color,
@@ -41,12 +41,12 @@ function MarsMaterial(color){
     return material
 }
 export function skyBox(scene){
-    const ft = new THREE.TextureLoader().load("../assets/galaxy/space_ft.png"); // Front (+Z)
-    const bk = new THREE.TextureLoader().load("../assets/galaxy/space_bk.png"); // Back (-Z)
-    const up = new THREE.TextureLoader().load("../assets/galaxy/space_up.png"); // Top (+Y)
-    const dn = new THREE.TextureLoader().load("../assets/galaxy/space_dn.png"); // Bottom (-Y)
-    const rt = new THREE.TextureLoader().load("../assets/galaxy/space_rt.png"); // Right (+X)
-    const lf = new THREE.TextureLoader().load("../assets/galaxy/space_lf.png"); // Left (-X)
+    const ft = new THREE.TextureLoader().load("..//galaxy/space_ft.png"); // Front (+Z)
+    const bk = new THREE.TextureLoader().load("..//galaxy/space_bk.png"); // Back (-Z)
+    const up = new THREE.TextureLoader().load("..//galaxy/space_up.png"); // Top (+Y)
+    const dn = new THREE.TextureLoader().load("..//galaxy/space_dn.png"); // Bottom (-Y)
+    const rt = new THREE.TextureLoader().load("..//galaxy/space_rt.png"); // Right (+X)
+    const lf = new THREE.TextureLoader().load("..//galaxy/space_lf.png"); // Left (-X)
 
 
     const textArray = [ft,bk,up,dn,rt,lf]

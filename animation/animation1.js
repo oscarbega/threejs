@@ -72,8 +72,8 @@ function Cubo(px, py, pz, sx, sy , sz, col) {
   let geometry = new THREE.SphereGeometry(1,100,100);
   //Material con o sin relleno
   const text = new THREE.TextureLoader()
-  const map = text.load('assets/ammo/noise.jpg')
-  const matcap = text.load('assets/ammo/7877EE_D87FC5_75D9C7_1C78C0.png')
+  const map = text.load('/ammo/noise.jpg')
+  const matcap = text.load('/ammo/7877EE_D87FC5_75D9C7_1C78C0.png')
   let material = new THREE.MeshMatcapMaterial({
     //color: 0xff00ff,
     matcap:matcap,

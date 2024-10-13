@@ -50,7 +50,7 @@ function init() {
 
   //Lectura del archivo csv
   var loader = new THREE.FileLoader();
-  loader.load("assets/terrains/aparcamientos_sagulpa_con_coordenadas.csv", function (text) {
+  loader.load("/terrains/aparcamientos_sagulpa_con_coordenadas.csv", function (text) {
     //console.log( text );
     let lines = text.split("\n");
     lines.pop();
@@ -96,7 +96,7 @@ function init() {
 
   //Textura del mapa
   const tx1 = new THREE.TextureLoader().load(
-    "assets/terrains/lpMap2.png",
+    "/terrains/lpMap2.png",
 
     // Acciones a realizar tras la carga
     function (texture) {
@@ -142,10 +142,10 @@ function Esfera(px, py, pz, radio, nx, ny, col) {
 function car(px,py,scale,instance){
     const matLoader = new MTLLoader()
     const objLoader = new OBJLoader()
-    matLoader.load('assets/terrains/Car-Model/Car.mtl', (materials) => {
+    matLoader.load('/terrains/Car-Model/Car.mtl', (materials) => {
       console.log(scale)
       objLoader.setMaterials(materials)
-      objLoader.load('assets/terrains/Car-Model/Car.obj',(obj)=>{
+      objLoader.load('/terrains/Car-Model/Car.obj',(obj)=>{
         obj.rotateX(Math.PI/2)
         obj.scale.set(0.03*(1+scale*2),0.03*(1+scale*2),0.03*(1+scale*2))
         obj.rotateY(Math.PI/(Math.random()))
