@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>three js</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class=" flex flex-col gap-5 bg-gradient-to-r from-[#d9a7c7] to-[#fffcdc] font-sans">
+    <header class="font-bold text-5xl p-10 box-border flex flex-col gap-2 bg-white shadow-xl">
+        <h1>Practicas de THREE.JS</h1>
+        <h2 class="font-thin text-3xl">Óscar Bellón García</h2>
+    </header>
+    <div class=" m-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-gradient-to-r gap-10 ">
+        <a href="solar-system" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Sistema Solar</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Recreacion de un sistema solar en THREE.JS. Ejemplificacion del uso de elementos de navegacion atraves de la escena, carga de texturas diversas(color, normales...) y aplicación de efectos de post-procesado.
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/galaxy/solar-sistema.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="solar-system.html" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="terrains" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Terreno</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Uso de texturas para lograr el desplazamiento geometrico de un modelo en THREE.JS. Representacion de las alturas de un mapa del mundo
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/terrains.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="terrains" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="osm" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Datos XML</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Uso de los datos de un archivo xlm(.osm) para cargar los modelos de una una ciudad, ampliado con la carga de modelos perzonalidos y sus materiales.
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/osm-demo.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="osm" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="sagulpa" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Sagulpa</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Representación de los aparcamientos manejados directamente por Sagulpa en Las Palmas de Gran Canaria, con la visualización de los datos de entradas y salidas de vehiculos de dichos aparcamientos a lo largo de los meses de 2024.
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/sagulpa.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="sagulpa" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="animation" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Tween.js</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Ejemplo del uso de tween.js en una aplicación desarrollada en three.js.(Animaciones interpoladas basadas en frames)
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/tween.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="animation" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="ammo2" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Ammo.js</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Ejemplo básico del uso de ammo.js para simular físicas de cuerpos rigidos en Three.js
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/ammo-demo.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="ammo2" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="ammo" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">Demo Ammo</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        Uso de la libreria de Ammo.js para simular el lanzamiento de bolos en una bolera. Adaptaciones de los pesos y velocidades de disparos para adaptar la escena y uso de modelos objs lincados a bloques de colision
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/bowling-demo.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="ammo" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+        <a href="vr" class="group opacity-0 transition-all duration-1000">
+            <article class="bg-[#ffffff81] h-full p-5 px-10 rounded-lg flex flex-col flex-grow gap-5 transition-all shadow-2xl ">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-2xl font-bold">VR Demo</h2>
+                    <div class="font-sans col-span-4 font-thin text-sm line-clamp-3">
+                        VR demo con three.js. Caida de particulas en un entorno envolvente. Desarrollo de interaciones con elementos en escena, y carga de texturas y modelos personalizada
+                    </div>
+                </div>
+                <div class="col-span-4 w-full h-60 flex-grow rounded-sm">
+                    <img src="assets/vr-demo.png" alt="" class=" h-full w-full object-cover rounded-md" >
+                </div>
+            
+                <div href="vr" class="flex justify-between items-center text-gray-600 fill-gray-600 transition-all group-hover:font-bold group-hover:fill-black group-hover:text-black">
+                    <div>Acceder</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-128c0-17.7-14.3-32-32-32L352 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"/></svg>
+                </div>
+            </article>
+        </a>
+    </div>
+</body>
+<style>
+    
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+
+        document.querySelectorAll("a").forEach((a,i)=>{
+            a.classList.add(`delay-[${i*200}ms]`)
+            a.classList.add("opacity-100")
+        })
+    })
+</script>
+</html>

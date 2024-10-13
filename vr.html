@@ -1,0 +1,361 @@
+<html lang="en">
+  <head>
+    <title>Basic Scene</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <script type="module">
+      let checkGrabbingR = false;
+      import { VRButton } from "https://unpkg.com/three@0.126.0/examples/jsm/webxr/VRButton.js";
+      import { FBXLoader } from "https://unpkg.com/three@0.126.0/examples/jsm/loaders/FBXLoader.js";
+      import { XRControllerModelFactory } from "https://unpkg.com/three@0.126.0/examples/jsm/webxr/XRControllerModelFactory.js";
+
+      let camera, scene, renderer;
+      // Controller
+      let controllerL, controllerR;
+
+      let textureLoader = new THREE.TextureLoader();
+
+      let objects = [];
+      
+
+      initConfiguration();
+      initScene();
+      
+      
+
+      //Snow
+      let particles;
+      let positions = [],
+        velocities = [];
+
+      const numSnowflakes = 15000;
+      const maxRange = 100,
+        minRange = maxRange / 2;
+      const minHeight = 10;
+
+      const geometry = new THREE.BufferGeometry();
+
+      addSnowflakes();
+      animate();
+      
+      
+
+      function addSnowflakes() {
+        for (let i = 0; i < numSnowflakes; i++) {
+          positions.push(
+            Math.floor(Math.random() * maxRange - minRange),
+            Math.floor(Math.random() * minRange + minHeight),
+            Math.floor(Math.random() * maxRange - minRange)
+          );
+          velocities.push(
+            Math.floor(Math.random() * 6 - 3) * 0.01,
+            Math.floor(Math.random() * 5 + 0.12) * 0.018,
+            Math.floor(Math.random() * 6 - 3) * 0.01
+          );
+        }
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3)
+        );
+        geometry.setAttribute(
+          "velocity",
+          new THREE.Float32BufferAttribute(velocities, 3)
+        );
+
+        const flakeMaterial = new THREE.PointsMaterial({
+          size: 0.19,
+          color: 0xffffff,
+        });
+
+        particles = new THREE.Points(geometry, flakeMaterial);
+        scene.add(particles);
+      }
+
+      function initConfiguration() {
+        const container = document.createElement("div");
+        document.body.appendChild(container);
+
+        // Scene
+        scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0xcccccc, 1, 50);
+
+        //addsky
+        const texture = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/HdrOutdoorSnowMountainsEveningClear001_JPG_2K.jpg?v=1701789623009"
+        );
+
+        const material = new THREE.MeshBasicMaterial({
+          map: texture,
+          side: THREE.DoubleSide,
+        });
+        const sky = new THREE.Mesh(
+          new THREE.SphereGeometry(30, 32, 32),
+          material
+        );
+
+        scene.add(sky);
+
+        // Add ground
+        const textureGroundColor = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_diff_2k.jpg?v=1701800283680",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+        const textureGroundDisp = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_disp_2k.png?v=1701800294573",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+        const textureGroundRough = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_rough_2k.jpg?v=1701800297766",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+        const textureGroundNormal = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_nor_gl_2k.jpg?v=1701801388090",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+        const textureGroundBump = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_bump_2k.jpg?v=1701801595369",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+        const textureGroundAo = textureLoader.load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/snow_01_ao_2k.jpg?v=1701801904072",
+          function (texture) {
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(15, 15);
+          }
+        );
+
+        const materialGround = new THREE.MeshStandardMaterial({
+          map: textureGroundColor,
+          displacementMap: textureGroundDisp,
+          roughnessMap: textureGroundRough,
+          normalMap: textureGroundNormal,
+          bumpMap: textureGroundDisp,
+          aoMap: textureGroundAo,
+        });
+
+        let plane = new THREE.Mesh(
+          new THREE.PlaneGeometry(60, 60),
+          materialGround
+        );
+        plane.rotation.set(-3.14159 / 2, 0, 0);
+        scene.add(plane);
+
+        // Trees
+        new FBXLoader().load(
+          "https://cdn.glitch.global/6e5e0c59-bf8b-4f0a-8fda-9338d0e255c4/TREE.fbx?v=1702035035103",
+          (object) => {
+            object.traverse((child) => {
+              object.scale.set(0.004, 0.004, 0.004);
+              createTree(object.clone(), [0, 0, -10]);
+              createTree(object.clone(), [5, 0, -3]);
+              createTree(object.clone(), [5, 0, 6]);
+              createTree(object.clone(), [15, 0, -20]);
+              createTree(object.clone(), [0, 0, 10]);
+              createTree(object.clone(), [-5, 0, 3]);
+              createTree(object.clone(), [-5, 0, -6]);
+              createTree(object.clone(), [-15, 0, 20]);
+            });
+          }
+        );
+        function createTree(tree, position) {
+          tree.position.set(position[0], position[1], position[2]);
+          scene.add(tree);
+        }
+
+        // Camera
+        camera = new THREE.PerspectiveCamera(
+          70,
+          window.innerWidth / window.innerHeight,
+          0.01,
+          40
+        );
+
+        camera.position.set(0, 3, 3);
+        camera.rotation.set(-0.4, 0, 0);
+
+        // three.js renderer
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        renderer.xr.enabled = true;
+
+        container.appendChild(renderer.domElement);
+
+        document.body.appendChild(VRButton.createButton(renderer));
+
+        renderer.setAnimationLoop(render);
+        //window.addEventListener("resize",onWindowResize,false)
+      }
+
+      function initScene() {
+        var light = new THREE.HemisphereLight(
+          0xbececf, // Sky Color
+          0x080820, // Ground Color
+          1 // Intensity
+        );
+        light.position.set(0.5, 1, 0.25);
+        scene.add(light);
+
+        AddObjects();
+
+        function AddObjects() {
+
+          const material = new THREE.MeshPhongMaterial({
+            shininess: 6,
+            shading: true,
+            transparent: 1,
+            opacity: 0.8,
+          });
+          objects = [
+            SetObject(
+              new THREE.CylinderGeometry(0.2, 0.2, 1, 32),
+              material.clone(),
+              [-0.5, 1.5, 0],
+              new THREE.Color("rgb(226,35,0)")
+            ),
+            SetObject(
+              new THREE.BoxGeometry(1, 1, 1),
+              material.clone(),
+              [0.5, 1.5, 0],
+              new THREE.Color("rgb(100,100, 255)")
+            ),
+            SetObject(
+              new THREE.SphereGeometry(0.6, 20, 20),
+              material.clone(),
+              [0, 1.5, -0.5],
+              new THREE.Color("rgb(0,255,0)")
+            ),
+          ];
+          function SetObject(geometry, mat, position, color) {
+            mat.color = color;
+            let mesh = new THREE.Mesh(geometry, mat.clone());
+            mesh.position.set(position[0], position[1], position[2]);
+            mesh.scale.set(0.1, 0.1, 0.1);
+            scene.add(mesh);
+            return mesh;
+          }
+        }
+      }
+
+      function CheckObjects() {
+for (var i = 0; i < objects.length; i++) {
+var diferenciaX = controllerR.position.x - objects[i].position.x
+var diferenciaY = controllerR.position.y - objects[i].position.y
+var diferenciaZ = controllerR.position.z - objects[i].position.z
+if (Math.sqrt(Math.pow(diferenciaX, 2) + Math.pow(diferenciaY, 2)+Math.pow(diferenciaZ, 2)) <=
+controllerActionRadius)
+objects[i].position.copy(controllerR.position);
+}
+}
+function render() {
+if (checkGrabbingR) {CheckObjects()}
+renderer.render(scene, camera);
+}
+
+      var controllerModelFactory = new XRControllerModelFactory();
+      controllerL = renderer.xr.getControllerGrip(0);
+      controllerR = renderer.xr.getControllerGrip(1);
+      const material = new THREE.MeshPhongMaterial({
+        shininess: 6,
+        shading: true,
+        transparent: 1,
+        opacity: 0.8,
+      });
+      const model1 = controllerModelFactory.createControllerModel(
+        controllerL,
+        material
+      );
+      controllerL.add(model1);
+      scene.add(controllerL);
+      const model2 = controllerModelFactory.createControllerModel(controllerR);
+      controllerR.add(model2);
+      scene.add(controllerR);
+
+      let controllerActionRadius = 0.1;
+      // Sphere that follow the controller
+      const materialSphereHand = new THREE.MeshPhongMaterial({
+        color: new THREE.Color("rgb(255,255,255)"),
+        shininess: 1,
+        shading: true,
+        transparent: true,
+        opacity: 0.2,
+      });
+      var sphereR = new THREE.Mesh(
+        new THREE.SphereGeometry(controllerActionRadius, 20, 20),
+        materialSphereHand.clone()
+      );
+      controllerR.add(sphereR);
+      
+      
+
+function SelectEventGrab(event)
+{
+checkGrabbingR = true;
+}
+function SelectEventGrabEnd(event)
+{
+checkGrabbingR = false;
+}
+      controllerR.addEventListener('selectstart', SelectEventGrab);
+controllerR.addEventListener('selectend', SelectEventGrabEnd);
+      
+      
+
+      function animate() {
+        requestAnimationFrame(animate);
+        updateParticles();
+        render();
+      }
+      function updateParticles() {
+        for (let i = 0; i < numSnowflakes * 3; i += 3) {
+          particles.geometry.attributes.position.array[i] -=
+            particles.geometry.attributes.velocity.array[i];
+          particles.geometry.attributes.position.array[i + 1] -=
+            particles.geometry.attributes.velocity.array[i + 1];
+          particles.geometry.attributes.position.array[i + 2] -=
+            particles.geometry.attributes.velocity.array[i + 2];
+
+          if (particles.geometry.attributes.position.array[i + 1] < 0) {
+            particles.geometry.attributes.position.array[i] = Math.floor(
+              Math.random() * maxRange - minRange
+            );
+            particles.geometry.attributes.position.array[i + 1] = Math.floor(
+              Math.random() * minRange + minHeight
+            );
+            particles.geometry.attributes.position.array[i + 2] = Math.floor(
+              Math.random() * maxRange - minRange
+            );
+          }
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
+      }
+    </script>
+  </body>
+</html>

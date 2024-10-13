@@ -1,0 +1,14 @@
+# Blender 4.0.1 MTL File: 'bowling.blend'
+# www.blender.org
+
+newmtl Poliigon_WoodFloorAsh_4186_1K
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Poliigon_WoodFloorAsh_4186_BaseColor.jpg
+map_Ns Poliigon_WoodFloorAsh_4186_Roughness.jpg
+map_refl Poliigon_WoodFloorAsh_4186_Metallic.jpg
+map_Bump -bm 1.000000 Poliigon_WoodFloorAsh_4186_Normal.png
